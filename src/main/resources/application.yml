@@ -1,0 +1,47 @@
+server:
+  port: 8080
+
+logging:
+  path: ../logs/
+  file: ${logging.path}/boot-demo.log
+  level:
+    root: INFO
+    org:
+      springframework:
+        data: INFO
+  pattern:
+    console: '%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n'
+
+spring:
+  profiles: dev
+  application:
+    name: autoTest
+  datasource:
+    auto:
+      jdbc-url: jdbc:mysql://localhost:3306/auto?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&useSSL=false
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      username: root
+      password: root
+      connectionTimeout: 60000
+      idleTimeout: 60000
+      validationTimeout: 3000
+      maxLifetime: 60000
+      loginTimeout: 5
+      maximumPoolSize: 60
+      minimumIdle: 50
+  redis:
+    database: 0
+    host: localhost
+    port: 6379
+    password: 123456
+    timeout: 3000
+    jedis:
+      pool:
+        max-active: 200
+        max-wait: 3000
+        max-idle: 20
+        min-idle: 10
+  cache:
+    type: redis
+    redis:
+      time-to-live: 60000
